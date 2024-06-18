@@ -9,14 +9,24 @@ class Model:
         self.data_path = data_path        
         self.model = None
 
-    def load_data(self):
+    def load_data(self, apply_fft=False, sampling_freq=50):
         df = pd.read_csv(self.data_path)
         df = df.drop('SVMacc', axis=1)
         X = df.drop('y_class', axis=1).values
         y = df['y_class'].values
-        self.X_train, self.X_val, self.y_train, self.y_val = train_test_split(X, y, test_size=0.2, shuffle=True, random_state=42)
+        
+        if apply_fft:
+            # 데이터 X에 대해 각 행별로 FFT 실행
+            fft_values = np.fft.fft(X, axis=1)  
+            fft_freq = np.fft.fftfreq(X.shape[1], 1 / sampling_freq)  
+            pos_indices = fft_freq > 0
+            X = np.abs(fft_values[:, pos_indices]) / X.shape[1]  # Magnitude only
+
+        self.X_train, self.X_val, self.y_train, self.y_val = train_test_split(
+            X, y, test_size=0.2, shuffle=True, random_state=42
+        )
         return self.X_train, self.X_val, self.y_train, self.y_val
-    
+
     def train_model(self):
         self.model = tf.keras.Sequential([
         
