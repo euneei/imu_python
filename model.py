@@ -60,8 +60,8 @@ class ModelTest:
 
 if __name__ == "__main__":
     trainer = Model('data221(walk,run,oth).csv')
-    trainer.load_and_preprocess_data()
-    trainer.build_and_train_model()
+    trainer.load_data(apply_fft=True)  # FFT를 적용하려면 True로 설정
+    trainer.train_model()
 
     tester = ModelTest('traincnn.h5', '.../test.csv')
     tester.load_model()
