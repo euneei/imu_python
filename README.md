@@ -1,17 +1,20 @@
 # imu_python
 
-1. cut_file.py '\n'
+1. cut_file.py
+
+   
 들어온 데이터에 대해 6초 간격으로 자릅니다.(301개)
+
 자른 데이터 파일들을 원하는 파일명으로 저장합니다. 
 
-2. preprocessing.py
+3. preprocessing.py
 cut_file.py를 통해 6초씩 자른 데이터들에 대한 전처리입니다. 
 이 과정에서 svm 계산을 하고, 1차원 데이터로 변환합니다. 또한 6초마다 나뉘었던 파일들을 하나의 학습을 위한 파일로 합칩니다. 
 
-3. model(training).py 
+4. model(training).py 
 학습 모델입니다. fft 변환이 필요한 경우 사용 할 수 있습니다.
 이 코드만 실행시켰을 때는 학습 결과 한 개를 출력할 수 있도록 합니다.
 
 
-4. main(test).py
+5. main(test).py
 model(training).py에서 학습된 모델을 검증합니다. 
