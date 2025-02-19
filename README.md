@@ -1,5 +1,6 @@
 # imu_python
 
+## 파일명과 저장경로는 다를 수 있습니다. 
 1. cut_file.py
 
    들어온 데이터에 대해 6초 간격으로 자릅니다.(301개)
@@ -21,4 +22,5 @@
 
 4. main(test).py
    
-   model(training).py에서 학습된 모델을 검증합니다. 
+   model(training).py에서 학습된 모델을 검증합니다.
+ 
